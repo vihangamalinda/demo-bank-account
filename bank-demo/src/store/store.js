@@ -1,11 +1,11 @@
 import {createStore} from "redux"
-const initialState = {
+const initialAccountState = {
     balance:0,
     loanAmount:0,
     loanPurpose:""
 }
 
-function reducer(state = initialState, action) {
+function accountReducer(state = initialAccountState, action) {
   const { type, payload } = action;
 
   switch (type) {
@@ -28,7 +28,7 @@ function reducer(state = initialState, action) {
   }
 }
 
-const store = createStore(reducer)
+const store = createStore(accountReducer)
 store.dispatch({type:"account/deposit",payload:100})
 console.log(store.getState())
 store.dispatch({type:"account/withdraw",payload:100})
