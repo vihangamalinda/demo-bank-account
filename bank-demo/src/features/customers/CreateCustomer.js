@@ -1,10 +1,23 @@
 import { useState } from "react";
+import {createCustomer,updateCustomer}  from "./customerSlicer";
+import { useDispatch } from "react-redux";
+import store from "../../store/store";
 
 function Customer() {
   const [fullName, setFullName] = useState("");
   const [nationalId, setNationalId] = useState("");
+  const dispatch = useDispatch();
 
-  function handleClick() {}
+  function handleClick(e) {
+    if(!fullName || !nationalId) return;
+    
+    const newCustomer = {
+      fullName: fullName,
+      nationalId: nationalId,
+      createdAt: new Date().toISOString(),
+    };
+    dispatch(createCustomer(newCustomer));
+  }
 
   return (
     <div>
