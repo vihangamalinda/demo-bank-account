@@ -1,5 +1,6 @@
-function Customer() {
-  return <h2>👋 Welcome, %NAME%</h2>;
+function Customer({customer}) {
+ 
+  return <h2>👋 Welcome, {customer.fullName}</h2>;
 }
 
 export default Customer;
