@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {deposit, withdraw,requestLoan,payloan} from "./accountSlicer";
 
 function AccountOperations() {
-  const {loanAmount:currentLoanAmount,loanPurpose:currentLoanPurpose} = useSelector((state)=>state.account);
+  const {loanAmount:currentLoanAmount,loanPurpose:currentLoanPurpose,isLoading} = useSelector((state)=>state.account);
 
   const [depositAmount, setDepositAmount] = useState("");
   const [withdrawalAmount, setWithdrawalAmount] = useState("");
@@ -57,7 +57,7 @@ function AccountOperations() {
             <option value="GBP">British Pound</option>
           </select>
 
-          <button onClick={handleDeposit}>Deposit {depositAmount}</button>
+          <button onClick={handleDeposit} disabled={isLoading}>{isLoading? "converting....":`Deposit ${depositAmount}`}</button>
         </div>
 
         <div>
