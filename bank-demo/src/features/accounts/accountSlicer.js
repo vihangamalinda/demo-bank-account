@@ -11,10 +11,15 @@ function accountReducer(state = initialAccountState, action) {
     case "account/deposit":
       return { ...state, balance: state.balance + payload };
     case "account/withdraw":
+      if (state.balance <payload) return state;
       return { ...state, balance: state.balance - payload };
     case "account/requestLoan":
       if (state.loanAmount > 0) return state;
-      return { ...state, loanAmount: payload };
+      return {
+        ...state,
+        loanAmount: payload.loanAmount,
+        loanPurpose: payload.loanPurpose,
+      };
     case "account/payLoan":
       return {
         ...state,
