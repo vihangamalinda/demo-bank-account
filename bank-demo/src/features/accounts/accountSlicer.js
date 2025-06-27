@@ -30,10 +30,34 @@ const accountSlice = createSlice({
       state.loanPurpose = "";
       state.loanAmount = 0;
     },
+    convertingCurrency(state){
+      state.isLoading =true;
+    }
   },
 });
-console.log(accountSlice);
-export const { deposit, withdraw, payloan, requestLoan } = accountSlice.actions;
+
+
+export const { withdraw, payloan, requestLoan } = accountSlice.actions;
+export function deposit(amount,currency) {
+  const actionType = "account/deposit";
+  if(currency ==="USD"){
+  return { type: actionType, payload: amount };
+  }
+  return async function(dispatch,getState){
+    dispatch({type:"account/convertingCurrency"})
+    //  API call
+    const response = await fetch(
+      `https://api.frankfurter.app/latest?amount=${amount}&from=${currency}&to=USD`
+    );
+    console.log(response);
+    const data = await response.json();
+    const converted = data.rates.USD;
+    console.log(data);
+    // return action
+    dispatch({type:actionType,payload:converted})
+  }
+}
+
 export default accountSlice.reducer;
 
 /*
