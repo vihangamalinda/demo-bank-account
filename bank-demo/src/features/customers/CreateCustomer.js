@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {createCustomer,updateCustomer}  from "./customerSlicer";
+import {create,update}  from "./customerSlicer";
 import { useDispatch } from "react-redux";
 import store from "../../store/store";
 
@@ -16,7 +16,7 @@ function Customer() {
       nationalId: nationalId,
       createdAt: new Date().toISOString(),
     };
-    dispatch(createCustomer(newCustomer));
+    dispatch(create(newCustomer));
   }
 
   return (
