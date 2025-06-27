@@ -4,6 +4,9 @@ const initialCustomerState = {
   createdAt: "",
 };
 
+/*
+Classical way of defining reducers and action creators
+
 function customerReducer(state = initialCustomerState, action) {
   const { type, payload } = action;
 
@@ -37,3 +40,5 @@ function updateCustomer(payload) {
 
 export default customerReducer;
 export { createCustomer, updateCustomer };
+
+*/
