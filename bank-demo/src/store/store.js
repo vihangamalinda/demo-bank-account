@@ -1,13 +1,14 @@
-import { applyMiddleware, combineReducers, createStore } from "redux";
-import { thunk } from "redux-thunk";
+/* *
+Implementation: Modern Redux implementation with  Redux toolkit
+**/
 import accountReducer from "../features/accounts/accountSlicer";
 import customerReducer from "../features/customers/customerSlicer";
-import {composeWithDevTools} from 'redux-devtools-extension';
-const reducerMap = {
-  account: accountReducer,
-  customer: customerReducer,
-};
-const rootReducer = combineReducers(reducerMap);
+import { configureStore } from "@reduxjs/toolkit";
 
-const store = createStore(rootReducer,composeWithDevTools(applyMiddleware(thunk)));
+const store = configureStore({
+  reducer: {
+    account: accountReducer,
+    customer: customerReducer,
+  },
+});
 export default store;
