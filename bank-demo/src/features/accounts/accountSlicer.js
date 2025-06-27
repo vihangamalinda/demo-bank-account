@@ -20,6 +20,7 @@ function accountReducer(state = initialAccountState, action) {
         ...state,
         loanAmount: payload.loanAmount,
         loanPurpose: payload.loanPurpose,
+        balance: state.balance + payload.loanAmount,
       };
     case "account/payLoan":
       return {
